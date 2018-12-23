@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        htmldiff: ['./src/Diff.js'],
+        htmldiff: ['babel-polyfill', './src/Diff.js'],
     },
 
     output: {

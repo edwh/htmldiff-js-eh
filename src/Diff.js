@@ -77,18 +77,18 @@ class HtmlDiff {
 
     performOperation(opp) {
         switch (opp.action) {
-            case Action.equal:
+            case Action.equ:
                 this.processEqualOperation(opp);
                 break;
-            case Action.delete:
+            case Action.del:
                 this.processDeleteOperation(opp, "diffdel");
                 break;
-            case Action.insert:
+            case Action.ins:
                 this.processInsertOperation(opp, "diffins");
                 break;
-            case Action.none:
+            case Action.non:
                 break;
-            case Action.replace:
+            case Action.rep:
                 this.processReplaceOperation(opp);
                 break;
         }
@@ -213,16 +213,16 @@ class HtmlDiff {
             let action;
 
             if (!matchStartsAtCurrentPositionInOld && !matchStartsAtCurrentPositionInNew) {
-                action = Action.replace;
+                action = Action.rep;
             } else if (matchStartsAtCurrentPositionInOld && !matchStartsAtCurrentPositionInNew) {
-                action = Action.insert;
+                action = Action.ins;
             } else if (!matchStartsAtCurrentPositionInOld) {
-                action = Action.delete;
+                action = Action.del;
             } else {
-                action = Action.none;
+                action = Action.non;
             }
 
-            if (action !== Action.none) {
+            if (action !== Action.non) {
                 operations.push(new Operation(action, positionInOld, match.startInOld, positionInNew, match.startInNew));
             }
 
